@@ -1,1 +1,623 @@
-# html_git_hub2
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SPORT SCZ - Tienda Deportiva</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0b3d0b;  /* Verde oscuro */
+    color: #fff;           /* Texto blanco */
+    min-height: 100vh;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  header {
+    background: #064906; /* Verde aún más oscuro para header */
+    color: white;
+    padding: 1.2rem 2rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(6, 73, 6, 0.8);
+    font-family: 'Segoe UI Black', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    letter-spacing: 3px;
+  }
+
+  nav {
+    background: #122c12; /* Verde oscuro navbar */
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 0;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.6);
+    flex-wrap: wrap;
+  }
+  nav a {
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.35rem 1rem;
+    border-radius: 30px;
+    color: #d7f0d7;
+    transition: all 0.3s ease;
+  }
+  nav a.active,
+  nav a:hover {
+    background: #d7f0d7; /* blanco suave en hover */
+    color: #064906;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(6, 73, 6, 0.8);
+  }
+
+  /* Hero area */
+  .hero {
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 1.5rem;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 0;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    animation: fadeInDown 1s ease forwards;
+    font-family: 'Segoe UI Black', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .hero-content h2 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 0.3rem;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.75);
+  }
+  .hero-content p {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.8rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.75);
+  }
+  .hero-content button {
+    padding: 1rem 3rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #064906; /* Verde oscuro */
+    background: #fff; /* Blanco */
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(4, 61, 4, 0.7);
+    transition: all 0.3s ease;
+  }
+  .hero-content button:hover {
+    background: #064906; /* Verde oscuro */
+    color: white;
+    box-shadow: 0 12px 30px rgba(4, 61, 4, 0.9);
+    transform: translateY(-4px);
+  }
+
+  /* Sección imágenes tipo Nike */
+  .nike-style-section {
+    max-width: 1100px;
+    margin: 3rem auto 5rem auto;
+    display: flex;
+    gap: 2rem;
+    padding: 0 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nike-card {
+    position: relative;
+    width: 48%;
+    cursor: pointer;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(6, 73, 6, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 320px;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Segoe UI Semibold', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .nike-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 24px 60px rgba(6, 73, 6, 1);
+  }
+  .nike-card img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: transform 0.5s ease;
+  }
+  .nike-card:hover img {
+    transform: scale(1.07);
+  }
+  .nike-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 2rem 2.5rem 2rem;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0.75) 100%);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 0 0 15px 15px;
+    color: white;
+  }
+  .nike-content h4 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .nike-content p {
+    font-size: 1.3rem;
+    margin-bottom: 1.3rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.75);
+  }
+  .nike-content button {
+    align-self: flex-start;
+    padding: 0.75rem 2rem;
+    font-weight: 800;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #064906;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 6px 20px rgba(6, 73, 6, 0.6);
+  }
+  .nike-content button:hover {
+    background: #064906;
+    color: white;
+    box-shadow: 0 8px 28px rgba(6, 73, 6, 1);
+  }
+
+  /* Sección destacados */
+  .featured-section h3 {
+    color: #c8e6c9; /* verde claro */
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+  }
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 2.7rem;
+  }
+  .featured-item {
+    background: #1a1a1a;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(6, 73, 6, 0.6);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .featured-item:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 24px 65px rgba(6, 73, 6, 0.9);
+  }
+  .featured-item img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+    filter: brightness(1.1);
+  }
+  .featured-item .content {
+    padding: 2rem 2.2rem 2.5rem 2.2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .featured-item .content h4 {
+    font-size: 1.9rem;
+    font-weight: 900;
+    margin-bottom: 0.4rem;
+    color: #eee;
+    text-shadow: 1px 1px 3px #064906;
+  }
+  .featured-item .content p {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #a5d6a7;
+    margin-bottom: 1.8rem;
+  }
+  .featured-item button {
+    width: 100%;
+    padding: 1.1rem 0;
+    border: none;
+    border-radius: 50px;
+    background: #064906;
+    color: white;
+    font-weight: 900;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 9px 25px rgba(6, 73, 6, 0.9);
+  }
+  .featured-item button:hover {
+    background: #a5d6a7;
+    color:#064906;
+    box-shadow: 0 12px 40px rgba(165, 214, 167, 1);
+    transform: translateY(-5px);
+  }
+
+  /* Sección productos general */
+  #productos {
+    max-width: 1100px;
+    margin: 2rem auto 6rem auto;
+    padding: 0 1rem;
+    display: none;
+  }
+  #productos h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #e8f5e9;
+    text-shadow: 1px 1px 4px rgba(6, 73, 6, 0.9);
+  }
+  .product-item {
+    background: #122c12;
+    border-radius: 15px;
+    box-shadow: 0 12px 30px rgba(6, 73, 6, 0.8);
+    width: 280px;
+    margin: 1rem;
+    padding: 1rem 1rem 2rem 1rem;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-item:hover {
+    transform: translateY(-14px);
+    box-shadow: 0 18px 50px rgba(6, 73, 6, 0.9);
+  }
+  .product-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    user-select: none;
+    pointer-events: none;
+    filter: brightness(1.1);
+  }
+  .product-item h3,
+  .product-item p {
+    color: #d0f0c0;
+  }
+  .product-item p {
+    font-weight: 900;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: #a5d6a7;
+  }
+  .product-item button {
+    padding: 0.9rem 1.8rem;
+    background: #064906;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: 900;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(6, 73, 6, 0.8);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .product-item button:hover {
+    background: #a5d6a7;
+    color: #064906;
+    box-shadow: 0 14px 40px rgba(165, 214, 167, 1);
+    transform: translateY(-5px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav {
+      gap: 1rem;
+    }
+    .hero-content h2 {
+      font-size: 2.4rem;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+    }
+    .nike-style-section {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .nike-card {
+      width: 100%;
+      height: 250px;
+    }
+    .featured-grid {
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+    }
+    .featured-item img {
+      height: 200px;
+    }
+    .product-item {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1.8rem;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><i class="fas fa-running"></i> SPORT SCZ</h1>
+</header>
+
+<nav>
+  <a id="navInicio" class="active">Inicio</a>
+  <a id="navProductos">Productos</a>
+  <a id="navCarrito">Carrito (<span id="cartCount">0</span>)</a>
+  <a id="navContacto">Contacto</a>
+</nav>
+
+<!-- Inicio -->
+<section id="inicio" class="container">
+  <div class="hero">
+    <div class="hero-content">
+      <h2>¡Domina el Juego!</h2>
+      <p>Equipamiento deportivo de alta calidad para atletas apasionados</p>
+      <button id="btnExplorarProductos">Comprar Ahora</button>
+    </div>
+  </div>
+
+  <!-- Sección imágenes tipo Nike -->
+  <div class="nike-style-section">
+    <div class="nike-card" onclick="showSection('productos')">
+      <img src="https://images.unsplash.com/photo-1600185363471-322f9833a61e?auto=format&fit=crop&w=700&q=80" alt="Nike Running" />
+      <div class="nike-content">
+        <h4>Nike Running</h4>
+        <p>Descuentos para tu próxima carrera.</p>
+        <button>Comprar</button>
+      </div>
+    </div>
+
+    <div class="nike-card" onclick="showSection('productos')">
+      <img src="https://images.unsplash.com/photo-1508098682728-83a896ff52c1?auto=format&fit=crop&w=700&q=80" alt="Nike Jordan" />
+      <div class="nike-content">
+        <h4>Nike Jordan</h4>
+        <p>Viví el legado Jordan.</p>
+        <button>Comprar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección Productos Destacados -->
+  <div class="featured-section">
+    <h3>Productos Destacados</h3>
+    <div class="featured-grid">
+      <div class="featured-item" data-item="Zapatillas Futsal" data-price="450">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPQpDLSPEwNQF535arbUuMLmIribGdNk8tAg&s" alt="Zapatillas Futsal" />
+        <div class="content">
+          <h4>Zapatillas Futsal</h4>
+          <p>Bs 450</p>
+          <button class="btnVerProducto">Ver Más</button>
+        </div>
+      </div>
+
+      <div class="featured-item" data-item="Zapatillas Deportivas" data-price="600">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVHDMsAgtvw7V-yCKZsQWWmU-9XotkQsUqhA&s" alt="Zapatillas Deportivas" />
+        <div class="content">
+          <h4>Zapatillas Deportivas</h4>
+          <p>Bs 600</p>
+          <button class="btnVerProducto">Ver Más</button>
+        </div>
+      </div>
+
+      <div class="featured-item" data-item="Mochila Deportiva" data-price="370">
+        <img src="https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/d6d842fe-e77e-4d07-b30b-3f495fe303be/NK+ELMNTL+BKPK+-+HBR.png" alt="Mochila Deportiva" />
+        <div class="content">
+          <h4>Mochila Deportiva</h4>
+          <p>Bs 370</p>
+          <button class="btnVerProducto">Ver Más</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Productos -->
+<section id="productos" class="container" style="display:none;">
+  <h2>Productos Disponibles</h2>
+
+  <div class="product-item">
+    <img src="https://cicadex.com/wp-content/uploads/2020/01/350-33-Camiseta-Hom-Azul-ped-27-3-4-RH-copia.jpg" alt="Camiseta Deportiva" />
+    <h3>Camiseta Deportiva</h3>
+    <p>Bs 120</p>
+    <button data-item="Camiseta Deportiva" data-price="120" class="btnAddCarrito"><i class="fas fa-cart-plus"></i> Añadir</button>
+  </div>
+
+  <div class="product-item">
+    <img src="https://www.abyss.com.ar/img_productos/25I-0142.jpg" alt="Pantalón Deportivo" />
+    <h3>Pantalón Deportivo</h3>
+    <p>Bs 150</p>
+    <button data-item="Pantalón Deportivo" data-price="150" class="btnAddCarrito"><i class="fas fa-cart-plus"></i> Añadir</button>
+  </div>
+
+  <div class="product-item">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThpREi6lb2fbj5nwXhgW4HUH0uVoZ0mR-3UA&s" alt="Canilleras" />
+    <h3>Canilleras</h3>
+    <p>Bs 150</p>
+    <button data-item="Canilleras" data-price="150" class="btnAddCarrito"><i class="fas fa-cart-plus"></i> Añadir</button>
+  </div>
+</section>
+
+<!-- Carrito -->
+<section id="carrito" class="container" style="display:none; max-width:700px; margin:auto;">
+  <h2>Carrito de Compras</h2>
+  <div id="cartItems" style="margin-top:1rem;"></div>
+  <div id="cartTotal" style="font-weight:bold; margin-top:1rem; font-size:1.25rem;"></div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto" class="container" style="display:none; max-width:600px; margin:auto; color:#eee;">
+  <h2>Contacto SPORT SCZ</h2>
+  <p>¿Dudas o preguntas? Contáctanos.</p>
+  <p><i class="fas fa-envelope"></i> sportscztiendadeportiva@gmail.com</p>
+  <p><i class="fas fa-phone-alt"></i> +591 62020462</p>
+  <p><i class="fas fa-map-marker-alt"></i> Santa Cruz, Bolivia</p>
+</section>
+
+<footer style="background: #064906; color: white; padding: 3rem 2rem; text-align: center; margin-top: 6rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <p>Gracias por visitar nuestra tienda. ¡Esperamos verte pronto!</p>
+  <p>SPORT SCZ - Tu mejor opción deportiva</p>
+  <div style="margin-top: 1.5rem;">
+    <a href="https://www.facebook.com/share/19Sff2F1sh/" target="_blank" style="margin: 0 0.75rem; font-size: 1.8rem; color: white;">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://web.whatsapp.com/" target="_blank" style="margin: 0 0.75rem; font-size: 1.8rem; color: white;">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.instagram.com/tienda_sport1221" target="_blank" style="margin: 0 0.75rem; font-size: 1.8rem; color: white;">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Secciones y navegación
+  const sections = ["inicio", "productos", "carrito", "contacto"];
+  const navLinks = {
+    inicio: document.getElementById("navInicio"),
+    productos: document.getElementById("navProductos"),
+    carrito: document.getElementById("navCarrito"),
+    contacto: document.getElementById("navContacto"),
+  };
+
+  function showSection(id) {
+    sections.forEach((s) => {
+      document.getElementById(s).style.display = s === id ? "block" : "none";
+      navLinks[s].classList.toggle("active", s === id);
+    });
+    if (id === "carrito") renderCart();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // Inicial por defecto
+  showSection("inicio");
+
+  // Eventos navegación
+  Object.entries(navLinks).forEach(([key, elem]) => {
+    elem.addEventListener("click", () => showSection(key));
+  });
+
+  // Botón en hero banner
+  document.getElementById("btnExplorarProductos").addEventListener("click", () => {
+    showSection("productos");
+  });
+
+  // Botones Ver Más en destacados también muestran productos
+  document.querySelectorAll(".btnVerProducto").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      showSection("productos");
+    });
+  });
+
+  // Carrito
+  let cart = [];
+
+  function updateCartCount() {
+    document.getElementById("cartCount").textContent = cart.length;
+  }
+
+  function addToCart(item, price) {
+    cart.push({ id: Date.now(), item, price });
+    updateCartCount();
+    alert(`"${item}" añadido al carrito`);
+  }
+
+  // Botones añadir carrito
+  document.querySelectorAll(".btnAddCarrito").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.dataset.item;
+      const price = Number(btn.dataset.price);
+      addToCart(item, price);
+    });
+  });
+
+  function renderCart() {
+    const container = document.getElementById("cartItems");
+    container.innerHTML = "";
+    if (cart.length === 0) {
+      container.innerHTML = `<p style="text-align:center; font-size:1.3rem;">Tu carrito está vacío.</p>`;
+      document.getElementById("cartTotal").textContent = "";
+      return;
+    }
+    let total = 0;
+    cart.forEach(({ id, item, price }) => {
+      total += price;
+      const div = document.createElement("div");
+      div.className = "cart-item";
+      div.style = "display:flex; justify-content:space-between; align-items:center; margin:0.8rem 0; padding:0.8rem; background: #222; border-radius:10px; box-shadow: 0px 2px 10px rgba(0,0,0,0.5);";
+      div.innerHTML = `
+        <div><strong>${item}</strong> - Bs ${price}</div>
+        <button style="background:#a5d6a7; border:none; border-radius:12px; padding:6px 12px; color:#064906; cursor:pointer;" onclick="removeFromCart(${id})">Eliminar</button>
+      `;
+      container.appendChild(div);
+    });
+    document.getElementById("cartTotal").textContent = `Total: Bs ${total}`;
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter((item) => item.id !== id);
+    updateCartCount();
+    renderCart();
+  }
+</script>
+</body>
+</html>
